@@ -23,7 +23,7 @@ let simulationControls;
  * Initialize the application
  */
 function init() {
-    console.log('🔌 Circuit Simulator initializing...');
+    console.log('⚡ GridLab initializing...');
 
     // Create circuit graph
     circuitGraph = new CircuitGraph();
@@ -61,8 +61,8 @@ function init() {
 
     // Setup header buttons
     setupHeaderButtons();
+    setupAboutModal();
 
-    // Setup collapsible panel sections
     // Setup collapsible panel sections
     setupCollapsibleSections();
     setupPanelDragResize();
@@ -142,7 +142,43 @@ function init() {
         simulationControls.detectSensorMode();
     }
 
-    console.log('✅ Circuit Simulator ready!');
+    console.log('✅ GridLab ready!');
+}
+
+/**
+ * Setup About GridLab modal
+ */
+function setupAboutModal() {
+    const aboutBtn = document.getElementById('btn-about');
+    const aboutOverlay = document.getElementById('about-modal-overlay');
+    const closeBtn = document.getElementById('about-modal-close');
+    const footerCloseBtn = document.getElementById('btn-about-close');
+
+    if (!aboutOverlay) return;
+
+    function openAbout() {
+        aboutOverlay.style.display = 'flex';
+    }
+
+    function closeAbout() {
+        aboutOverlay.style.display = 'none';
+    }
+
+    aboutBtn?.addEventListener('click', openAbout);
+    closeBtn?.addEventListener('click', closeAbout);
+    footerCloseBtn?.addEventListener('click', closeAbout);
+
+    aboutOverlay.addEventListener('click', (e) => {
+        if (e.target === aboutOverlay) {
+            closeAbout();
+        }
+    });
+
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && aboutOverlay.style.display === 'flex') {
+            closeAbout();
+        }
+    });
 }
 
 /**
@@ -525,3 +561,6 @@ window.circuitSimulator = {
         return result;
     }
 };
+
+window.gridLab = window.circuitSimulator;
+

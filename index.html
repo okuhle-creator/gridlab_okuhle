@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Interactive RLC Circuit Simulator - Analyze and simulate electronic circuits with real-time visualization">
-    <title>Circuit Simulator | RLC Analysis</title>
+        content="GridLab - Interactive Electrical Engineering Laboratory. An educational electrical circuit simulation and analysis workbench featuring real-time schematic capture, DC/AC/Transient solvers, and virtual instrumentation.">
+    <title>GridLab | Interactive Electrical Engineering Laboratory</title>
     <link rel="stylesheet" href="index.css">
     <script src="config.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,22 +21,21 @@
         <!-- Header -->
         <header class="app-header">
             <div class="logo">
-                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="3" />
-                    <path
-                        d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" />
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="3" />
+                    <line x1="8" y1="2" x2="8" y2="22" />
+                    <line x1="16" y1="2" x2="16" y2="22" />
+                    <line x1="2" y1="8" x2="22" y2="8" />
+                    <line x1="2" y1="16" x2="22" y2="16" />
+                    <circle cx="8" cy="8" r="1.5" fill="currentColor" />
+                    <circle cx="16" cy="16" r="1.5" fill="currentColor" />
                 </svg>
-                <span class="logo-text">Circuit Simulator</span>
+                <div class="logo-text-group">
+                    <span class="logo-title">GridLab</span>
+                    <span class="logo-subtitle">Interactive Electrical Engineering Laboratory</span>
+                </div>
             </div>
             <div class="header-actions">
-                <a href="#" class="btn btn-secondary" id="btn-back-guide"
-                    onclick="window.location.href = CONFIG.GUIDE_URL; return false;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M19 12H5" />
-                        <polyline points="12 19 5 12 12 5" />
-                    </svg>
-                    Back to Guide
-                </a>
                 <a href="gallery.html" class="btn btn-secondary" id="btn-explore-gallery" style="text-decoration: none;">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="3" y="3" width="7" height="7"></rect>
@@ -44,8 +43,16 @@
                         <rect x="14" y="14" width="7" height="7"></rect>
                         <rect x="3" y="14" width="7" height="7"></rect>
                     </svg>
-                    Explore Gallery
+                    Circuit Gallery
                 </a>
+                <button class="btn btn-secondary" id="btn-about" title="About GridLab">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                    About GridLab
+                </button>
                 <button class="btn btn-secondary" id="btn-change-config" style="display: none;">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -64,27 +71,27 @@
                         <line x1="9" y1="15" x2="15" y2="15" />
                     </svg>
                 </button>
-                <button class="header-icon-btn" id="btn-save" title="Save Circuit">
+                <button class="header-icon-btn" id="btn-save" title="Save Circuit (Ctrl+S)">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
                         <polyline points="17 21 17 13 7 13 7 21" />
                         <polyline points="7 3 7 8 15 8" />
                     </svg>
                 </button>
-                <button class="header-icon-btn" id="btn-download" title="Download Circuit">
+                <button class="header-icon-btn" id="btn-download" title="Export Circuit JSON">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                         <polyline points="7 10 12 15 17 10" />
                         <line x1="12" y1="15" x2="12" y2="3" />
                     </svg>
                 </button>
-                <button class="header-icon-btn" id="btn-export-image" title="Export as Image (Screen Capture)">
+                <button class="header-icon-btn" id="btn-export-image" title="Export Schematic (PNG)">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
                         <circle cx="12" cy="13" r="4" />
                     </svg>
                 </button>
-                <button class="header-icon-btn" id="btn-load" title="Load Circuit">
+                <button class="header-icon-btn" id="btn-load" title="Load Circuit (JSON)">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                         <polyline points="17 8 12 3 7 8" />
@@ -96,6 +103,76 @@
 
         <!-- Main Content -->
         <main class="app-main">
+            <!-- About GridLab Modal Overlay (Hidden by default) -->
+            <div id="about-modal-overlay" class="about-modal-overlay" style="display: none;">
+                <div class="about-modal">
+                    <div class="about-modal-header">
+                        <div class="about-modal-branding">
+                            <svg class="about-modal-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="3" />
+                                <line x1="8" y1="2" x2="8" y2="22" />
+                                <line x1="16" y1="2" x2="16" y2="22" />
+                                <line x1="2" y1="8" x2="22" y2="8" />
+                                <line x1="2" y1="16" x2="22" y2="16" />
+                                <circle cx="8" cy="8" r="1.5" fill="currentColor" />
+                                <circle cx="16" cy="16" r="1.5" fill="currentColor" />
+                            </svg>
+                            <div>
+                                <h2 class="about-modal-title">GridLab</h2>
+                                <p class="about-modal-tagline">Interactive Electrical Engineering Laboratory</p>
+                            </div>
+                        </div>
+                        <button class="about-modal-close" id="about-modal-close" title="Close Dialog">&times;</button>
+                    </div>
+                    <div class="about-modal-body">
+                        <p class="about-desc">
+                            <strong>GridLab</strong> is an educational electrical circuit simulation and analysis platform engineered for interactive laboratory instruction, academic experimentation, and circuit verification. Built with clean web standards and zero third-party runtime dependencies, GridLab provides real-time schematic capture, analytical mathematical solvers, and virtual measurement instruments.
+                        </p>
+                        
+                        <div class="about-features-grid">
+                            <div class="about-feature-card">
+                                <h3>⚡ Simulation Engine</h3>
+                                <p>Comprehensive Modified Nodal Analysis (MNA) for DC operating points and AC frequency-domain phasor analysis, coupled with numerical integration for dynamic transient waveforms.</p>
+                            </div>
+                            <div class="about-feature-card">
+                                <h3>🔬 Virtual Instrumentation</h3>
+                                <p>Dual-channel virtual oscilloscope with auto-scaling and crosshairs, integrated ammeters, voltmeters, and single-phase/three-phase wattmeters.</p>
+                            </div>
+                            <div class="about-feature-card">
+                                <h3>📐 Component Library</h3>
+                                <p>Full suite of active and passive components: RLC, ideal & non-ideal op-amps, diodes, multi-winding transformers, three-phase sources, and transducer sensor bridges.</p>
+                            </div>
+                            <div class="about-feature-card">
+                                <h3>📚 Curated Experiment Gallery</h3>
+                                <p>Pre-configured benchmark templates verifying core theorems (Thevenin, Superposition), active filter topologies, and industrial instrumentation circuits.</p>
+                            </div>
+                        </div>
+
+                        <div class="about-shortcuts-section">
+                            <h3>Key Workbench Shortcuts</h3>
+                            <div class="shortcuts-grid">
+                                <div><kbd>R</kbd> Resistor</div>
+                                <div><kbd>C</kbd> Capacitor</div>
+                                <div><kbd>L</kbd> Inductor</div>
+                                <div><kbd>G</kbd> Ground</div>
+                                <div><kbd>V</kbd> DC Source</div>
+                                <div><kbd>D</kbd> Diode</div>
+                                <div><kbd>O</kbd> Op-Amp</div>
+                                <div><kbd>T</kbd> Transformer</div>
+                                <div><kbd>A</kbd> Ammeter</div>
+                                <div><kbd>M</kbd> Voltmeter</div>
+                                <div><kbd>W</kbd> Wattmeter</div>
+                                <div><kbd>Del</kbd> Delete</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-modal-footer">
+                        <span class="about-version">GridLab Workbench v1.0 • Educational Edition</span>
+                        <button class="btn btn-primary" id="btn-about-close">Close</button>
+                    </div>
+                </div>
+            </div>
+
             <!-- Preset Selection Modal Overlay (Hidden by default) -->
             <div id="preset-modal-overlay" class="preset-modal-overlay" style="display: none;">
                 <div class="preset-modal">
@@ -311,12 +388,12 @@
             <span class="status-item" id="status-coords">X: 0, Y: 0</span>
             <span class="status-item" id="status-zoom">Zoom: 100%</span>
             <span class="status-item" id="status-components">Components: 0</span>
-            <span class="status-credit">Designed &amp; Developed by Akshay Ravikanti</span>
+            <span class="status-credit">GridLab • Interactive Electrical Engineering Laboratory</span>
         </footer>
     </div>
 
-    <!-- Scripts -->
-    <script type="module" src="src/main.js"></script>
+    <!-- Scripts (pre-bundled IIFE — works with file:// and http://) -->
+    <script src="dist/bundle.js"></script>
 </body>
 
 </html>

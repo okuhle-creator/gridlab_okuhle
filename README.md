@@ -1,9 +1,8 @@
-# Bhilai EE Circuit Simulator
+# GridLab
 
-A browser-based circuit simulator for electrical engineering lab experiments. Built with **zero dependencies** — pure HTML, CSS, and JavaScript using ES6 modules. Supports DC, AC, and transient analysis with real-time oscilloscope visualization and pre-built experiment templates across three labs: Basic EE, Devices & Circuits, and Sensor Lab.
+### Interactive Electrical Engineering Laboratory
 
-**Live →** [bhilaee-simulator.vercel.app](https://bhilaee-simulator.vercel.app)
-**Companion App →** [Bhilai EE Labs Guide](https://bhilaee-labs.vercel.app) · [Repository](https://github.com/RavikantiAkshay/basic-lab-guide)
+A professional, browser-based electrical circuit simulation and analysis tool engineered for educational instruction, laboratory experimentation, and circuit verification. Built with **zero runtime dependencies** — pure HTML, CSS, and modern JavaScript using standard ES modules. Supports DC, AC, and transient analysis with real-time waveform visualization, dual-trace oscilloscope, and pre-built experiment templates across Basic Electrical Engineering, Devices & Circuits, Active Filters, and Sensors.
 
 ---
 

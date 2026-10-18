@@ -1,5 +1,16 @@
 {
+  "name": "gridlab",
+  "version": "1.0.0",
+  "description": "GridLab - Interactive Electrical Engineering Laboratory",
+  "type": "module",
+  "scripts": {
+    "build": "esbuild src/main.js --bundle --outfile=dist/bundle.js --format=iife --global-name=GridLabApp --platform=browser",
+    "watch": "esbuild src/main.js --bundle --outfile=dist/bundle.js --format=iife --global-name=GridLabApp --platform=browser --watch",
+    "start": "node server.js",
+    "serve": "node server.js"
+  },
   "devDependencies": {
+    "esbuild": "^0.28.2",
     "puppeteer": "^24.40.0"
   }
 }

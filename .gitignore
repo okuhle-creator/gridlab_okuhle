@@ -80,7 +80,9 @@ out
 
 # Nuxt.js build / generate output
 .nuxt
-dist
+.nuxt/dist
+# dist/ is intentionally tracked — it contains the pre-built bundle for file:// usage
+# dist
 
 # Gatsby files
 .cache/

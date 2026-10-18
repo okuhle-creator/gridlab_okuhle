@@ -770,13 +770,13 @@ export class Canvas {
             const style = document.createElementNS('http://www.w3.org/2000/svg', 'style');
             style.textContent = `
                 :root {
-                    --bg-export: #020617;
-                    --stroke-comp: #38bdf8;
-                    --fill-comp: rgba(56, 189, 248, 0.15);
-                    --stroke-wire: #38bdf8;
-                    --glow-wire: rgba(56, 189, 248, 0.3);
-                    --text-main: #f8fafc;
-                    --text-sub: #94a3b8;
+                    --bg-export: #ffffff;
+                    --stroke-comp: #0f172a;
+                    --fill-comp: rgba(15, 23, 42, 0.02);
+                    --stroke-wire: #0369a1;
+                    --glow-wire: transparent;
+                    --text-main: #0f172a;
+                    --text-sub: #475569;
                 }
                 svg { 
                     background-color: var(--bg-export); 
@@ -802,7 +802,6 @@ export class Canvas {
                     stroke-width: 2.5; 
                     stroke-linecap: round;
                     stroke-linejoin: round;
-                    filter: drop-shadow(0 0 1.5px var(--glow-wire));
                 }
                 
                 /* Terminals - Tiny solid dots to fill any gaps */

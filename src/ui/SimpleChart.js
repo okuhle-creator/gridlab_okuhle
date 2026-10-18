@@ -12,14 +12,14 @@ export class SimpleChart {
         this.ctx = null;
         this.data = null;
 
-        // Chart styling
+        // Chart styling - professional engineering palette
         this.colors = [
-            '#22d3ee', // cyan
-            '#a78bfa', // purple
-            '#4ade80', // green
-            '#fb923c', // orange
-            '#f472b6', // pink
-            '#facc15'  // yellow
+            '#1d4ed8', // engineering blue
+            '#dc2626', // technical red
+            '#059669', // technical green
+            '#d97706', // amber
+            '#7c3aed', // violet
+            '#0284c7'  // sky blue
         ];
 
         this.padding = { top: 30, right: 20, bottom: 40, left: 60 };
@@ -74,8 +74,8 @@ export class SimpleChart {
         const { timePoints, series } = this.data;
         const { width, height, padding, ctx } = this;
 
-        // Clear
-        ctx.fillStyle = '#1a1a2e';
+        // Clear background
+        ctx.fillStyle = '#ffffff';
         ctx.fillRect(0, 0, width, height);
 
         // Chart area
@@ -151,7 +151,7 @@ export class SimpleChart {
         const chartWidth = width - padding.left - padding.right;
         const chartHeight = height - padding.top - padding.bottom;
 
-        ctx.strokeStyle = '#333';
+        ctx.strokeStyle = '#e2e8f0';
         ctx.lineWidth = 1;
 
         // Vertical grid lines
@@ -175,8 +175,8 @@ export class SimpleChart {
         }
 
         // Axes
-        ctx.strokeStyle = '#666';
-        ctx.lineWidth = 2;
+        ctx.strokeStyle = '#94a3b8';
+        ctx.lineWidth = 1.5;
 
         // X axis
         ctx.beginPath();
@@ -196,7 +196,7 @@ export class SimpleChart {
         const chartWidth = width - padding.left - padding.right;
         const chartHeight = height - padding.top - padding.bottom;
 
-        ctx.fillStyle = '#888';
+        ctx.fillStyle = '#475569';
         ctx.font = '11px sans-serif';
         ctx.textAlign = 'center';
 
@@ -218,22 +218,22 @@ export class SimpleChart {
         }
 
         // Axis titles
-        ctx.fillStyle = '#aaa';
-        ctx.font = '12px sans-serif';
+        ctx.fillStyle = '#0f172a';
+        ctx.font = '600 11px sans-serif';
         ctx.textAlign = 'center';
         ctx.fillText('Time', padding.left + chartWidth / 2, height - 2);
 
         ctx.save();
         ctx.translate(12, padding.top + chartHeight / 2);
         ctx.rotate(-Math.PI / 2);
-        ctx.fillText('Voltage', 0, 0);
+        ctx.fillText('Voltage (V)', 0, 0);
         ctx.restore();
     }
 
     drawLegend(legend) {
         const { ctx, padding, width } = this;
 
-        ctx.font = '11px sans-serif';
+        ctx.font = '500 11px sans-serif';
         let x = padding.left + 10;
         const y = 15;
 
@@ -243,7 +243,7 @@ export class SimpleChart {
             ctx.fillRect(x, y - 8, 12, 12);
 
             // Label
-            ctx.fillStyle = '#ccc';
+            ctx.fillStyle = '#0f172a';
             const displayName = this.formatNodeName(name);
             ctx.fillText(displayName, x + 16, y + 2);
 

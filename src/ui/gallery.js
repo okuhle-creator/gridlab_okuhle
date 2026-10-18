@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <h3 class="card-title">${circuit.name}</h3>
                 <p class="card-description">${circuit.desc}</p>
-                <a href="${simUrl}" class="card-action">View Circuit</a>
+                <a href="${simUrl}" class="card-action">Open in GridLab</a>
             </div>
         `;
 
