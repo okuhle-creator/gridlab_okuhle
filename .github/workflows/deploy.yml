@@ -36,7 +36,7 @@ jobs:
         run: npm ci
 
       - name: Build GridLab
-        run: npm run build -- --base=/gridlab-okuhle/
+        run: npm run build
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
